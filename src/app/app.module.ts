@@ -16,18 +16,22 @@ import {
        
 import { WelcomeComponent } from './welcome/welcome.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
+import { IntroVideoComponent } from './intro-video/intro-video.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
   { path: 'welcome', component: WelcomeComponent },
   { path: 'personal-info', component: PersonalInfoComponent },
+  { path: 'intro-video', component: IntroVideoComponent },
+  { path: '**', redirectTo: 'welcome' }
 ]
       
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
-    PersonalInfoComponent
+    PersonalInfoComponent,
+    IntroVideoComponent
   ],
   imports: [
     BrowserModule,
