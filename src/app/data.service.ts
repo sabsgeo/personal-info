@@ -6,11 +6,11 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class DataService {
 
   private progressState = new BehaviorSubject<number>(0);
-  currentMessage = this.progressState.asObservable();
+  progressStateMessage = this.progressState.asObservable();
 
   constructor() { }
 
-  changeMessage(message: number) {
+  changeProgressState(message: number) {
     this.progressState.next(message)
   }
 

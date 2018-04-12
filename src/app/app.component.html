@@ -1,12 +1,13 @@
 <mat-horizontal-stepper [linear]="isLinear" [selectedIndex]="selectedState">
-  <mat-step editable="false">
+  <mat-step editable="true" completed="true">
     <ng-template matStepLabel>Welcome</ng-template>
   </mat-step>
-  <mat-step editable="false"> 
+  <mat-step editable="false" completed="true"> 
     <ng-template matStepLabel>Fill out Details</ng-template>
   </mat-step>
-  <mat-step editable="false">
+  <mat-step editable="false" completed="true">
     <ng-template matStepLabel>Introduction video</ng-template>
   </mat-step>
 </mat-horizontal-stepper>
+{{selectedState}}
 <router-outlet></router-outlet>

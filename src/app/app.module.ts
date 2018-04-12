@@ -19,6 +19,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { IntroVideoComponent } from './intro-video/intro-video.component';
 
+import { DataService } from './data.service';
+
 const appRoutes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
   { path: 'welcome', component: WelcomeComponent },
@@ -42,7 +44,9 @@ const appRoutes: Routes = [
     MatCheckboxModule,
     MatStepperModule
   ],
-  providers: [],
+  providers: [
+    DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

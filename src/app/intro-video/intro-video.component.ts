@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-intro-video',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IntroVideoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataservice: DataService) { }
 
   ngOnInit() {
+    this.dataservice.changeProgressState(2);
   }
 
 }
