@@ -11,7 +11,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { 
           MatButtonModule,
-          MatCheckboxModule
+          MatCheckboxModule,
+          MatStepperModule
        } from '@angular/material';
        
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes, { useHash: true }),
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent]
