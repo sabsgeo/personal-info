@@ -9,9 +9,7 @@ import { DataService } from './data.service';
 })
 export class AppComponent {
   title = 'app';
-  selectedState = 1;
-
+  
   constructor(private dataservice: DataService) {
-    this.dataservice.progressStateMessage.subscribe(message => setTimeout(() => this.selectedState = message));
   }
 }

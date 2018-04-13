@@ -12,7 +12,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { 
           MatButtonModule,
           MatCheckboxModule,
-          MatStepperModule
+          MatStepperModule,
+          MatCardModule,
+          MatInputModule
        } from '@angular/material';
        
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -39,10 +41,13 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(appRoutes, { useHash: true }),
+    RouterModule,
+    // RouterModule.forRoot(appRoutes, { useHash: true }),
     MatButtonModule,
     MatCheckboxModule,
-    MatStepperModule
+    MatStepperModule,
+    MatCardModule,
+    MatInputModule
   ],
   providers: [
     DataService

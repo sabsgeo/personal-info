@@ -1,13 +1,18 @@
-<mat-horizontal-stepper [linear]="isLinear" [selectedIndex]="selectedState">
-  <mat-step editable="true" completed="true">
+<mat-horizontal-stepper [linear]="false" style="width: 90%; margin-left: 5%">
+  <mat-step editable="true">
     <ng-template matStepLabel>Welcome</ng-template>
+    <app-welcome></app-welcome>
+    <div  style="margin-top: 20px; margin-left: 42%">
+      <button mat-raised-button>Quit</button>
+      <button mat-raised-button matStepperNext>Next</button>
+    </div>
   </mat-step>
-  <mat-step editable="false" completed="true"> 
+  <mat-step editable="true"> 
     <ng-template matStepLabel>Fill out Details</ng-template>
+    <app-personal-info></app-personal-info>
   </mat-step>
-  <mat-step editable="false" completed="true">
+  <mat-step editable="true">
     <ng-template matStepLabel>Introduction video</ng-template>
+    <app-intro-video></app-intro-video>
   </mat-step>
 </mat-horizontal-stepper>
-{{selectedState}}
-<router-outlet></router-outlet>

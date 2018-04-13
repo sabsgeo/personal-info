@@ -11,7 +11,8 @@ export class IntroVideoComponent implements OnInit {
   constructor(private dataservice: DataService) { }
 
   ngOnInit() {
-    this.dataservice.changeProgressState(2);
+    // console.log('d')
+    // this.dataservice.changeProgressState(2);
   }
 
 }

@@ -12,7 +12,7 @@ export class WelcomeComponent implements OnInit {
   constructor(private dataservice: DataService) { }
 
   ngOnInit() {
-    this.dataservice.changeProgressState(0);
+    // this.dataservice.changeProgressState(0);
   }
 
 }
