@@ -20,7 +20,8 @@
     <app-personal-info></app-personal-info>
     <div  style="margin-top: 20px; margin-left: 42%">
       <button mat-raised-button matStepperPrevious>Back</button>
-      <button mat-raised-button matStepperNext (click)="recomendedBudgetCal()">Next</button>
+      <button mat-raised-button (click)="validateEntries()">Next</button>
+      <button mat-raised-button matStepperNext (click)="recomendedBudgetCal()" style="display: none" id='detailstovideo'>Next</button>
       <p><br></p>
     </div>
   </mat-step>

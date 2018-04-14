@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DataService } from './data.service';
-
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ import { DataService } from './data.service';
 export class AppComponent {
   title = 'app';
   
-  constructor(public dataservice: DataService) {
+  constructor(public dataservice: DataService, public snackBar: MatSnackBar) {
   }
 
   recomendedBudgetCal() {
@@ -54,4 +54,37 @@ export class AppComponent {
       return -15
     }
   }
+
+  validateEntries() {
+    if(
+    this.dataservice.personalAndBusinessIntro.name.firstName !== '' &&
+    this.dataservice.personalAndBusinessIntro.name.lastName !== '' &&
+    this.dataservice.personalAndBusinessIntro.email !== '' &&
+    this.dataservice.personalAndBusinessIntro.businessDiscription !== '' &&
+    this.dataservice.personalAndBusinessIntro.businessDiscription.length > 150 &&
+    this.dataservice.personalAndBusinessIntro.fieldOfWork !== '' &&
+    this.dataservice.personalAndBusinessIntro.telephone.company !== '' &&
+    this.dataservice.personalAndBusinessIntro.average3MonthMarketingSpend !== null &&
+    this.dataservice.personalAndBusinessIntro.onlineSpendingWill !== null &&
+    this.dataservice.personalAndBusinessIntro.budgetChangeForyear !== null &&
+    this.dataservice.personalAndBusinessIntro.businessAnualIncome !== null &&
+    this.dataservice.personalAndBusinessIntro.marketingGoalthisYear  !== null &&
+    this.dataservice.personalAndBusinessIntro.maxOnlineMarketingSpendWill !== null
+
+    ) {
+      document.getElementById('detailstovideo').click();
+      return true;
+    } else {
+      this.openSnackBar('Fill the required entries', 'close');
+      return false;
+    }
+
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
 }

@@ -17,7 +17,8 @@ import {
           MatInputModule,
           MatFormFieldModule,
           MatIconModule,
-          MatRadioModule
+          MatRadioModule,
+          MatSnackBarModule
        } from '@angular/material';
        
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -58,7 +59,8 @@ const appRoutes: Routes = [
     MatCardModule,
     MatInputModule,
     MatIconModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSnackBarModule
   ],
   providers: [
     DataService,
