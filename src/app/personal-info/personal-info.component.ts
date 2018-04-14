@@ -17,21 +17,21 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 
 export class PersonalInfoComponent implements OnInit {
-  private expectedBudgetChanges = [
+  public expectedBudgetChanges = [
     {'txt': 'I want to increase my budge', 'value': 40},
     {'txt': 'I want to use the same amount', 'value': 20},
     {'txt': 'I want to lower my budget', 'value': -20}
   ];
 
-  private expectedBusinessGoals = [
+  public expectedBusinessGoals = [
     {'txt': "My goal is to grow and earn more money", 'value': 10},
     {'txt': "My goal is to keep my current income stable" , 'value': 0},
     {'txt': "non of the above", 'value': -1}
   ];
 
-  private matcher = new MyErrorStateMatcher();
+  public matcher = new MyErrorStateMatcher();
 
-  constructor(private dataservice: DataService) {
+  constructor(public dataservice: DataService) {
 
   }
 
@@ -39,7 +39,7 @@ export class PersonalInfoComponent implements OnInit {
     // this.dataservice.changeProgressState(1);
   }
 
-  private emailFormControl = new FormControl('', [
+  public emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);

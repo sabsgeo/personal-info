@@ -9,7 +9,7 @@ import { DataService } from '../data.service';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor(private dataservice: DataService) { }
+  constructor(public dataservice: DataService) { }
 
   ngOnInit() {
     // this.dataservice.changeProgressState(0);

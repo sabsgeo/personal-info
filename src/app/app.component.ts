@@ -10,10 +10,10 @@ import { DataService } from './data.service';
 export class AppComponent {
   title = 'app';
   
-  constructor(private dataservice: DataService) {
+  constructor(public dataservice: DataService) {
   }
 
-  private recomendedBudgetCal() {
+  recomendedBudgetCal() {
     console.log(this.dataservice.personalAndBusinessIntro);
     let recomendedBudget = this.dataservice.personalAndBusinessIntro.onlineSpendingWill + 
                            (this.dataservice.personalAndBusinessIntro.onlineSpendingWill * this.dataservice.personalAndBusinessIntro.budgetChangeForyear) / 100;

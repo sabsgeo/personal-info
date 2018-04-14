@@ -8,7 +8,7 @@ import { DataService } from '../data.service';
 })
 export class IntroVideoComponent implements OnInit {
 
-  constructor(private dataservice: DataService) { }
+  constructor(public dataservice: DataService) { }
 
   ngOnInit() {
     // console.log('d')
