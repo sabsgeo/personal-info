@@ -2,11 +2,18 @@
   <mat-step editable="true">
     <ng-template matStepLabel>Welcome</ng-template>
     <app-welcome></app-welcome>
-    <div  style="margin-top: 20px; margin-left: 42%">
+    <p><br></p>
+    <table style="width: 100%;" cellspacing="0">
+      <tr>
+        <td style="width: 100%" align="center">
+    <div>
       <button mat-raised-button>Quit</button>
       <button mat-raised-button matStepperNext>Next</button>
       <p><br></p>
     </div>
+      <td>
+    </tr>
+  </table>
   </mat-step>
   <mat-step editable="true"> 
     <ng-template matStepLabel>Business Details</ng-template>

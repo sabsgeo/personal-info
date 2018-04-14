@@ -28,6 +28,8 @@ export class PersonalInfoComponent implements OnInit {
     {'txt': "My goal is to keep my current income stable" , 'value': 0},
     {'txt': "non of the above", 'value': -1}
   ];
+  
+  public minDescriptionLen = 150;
 
   public matcher = new MyErrorStateMatcher();
 
@@ -44,4 +46,51 @@ export class PersonalInfoComponent implements OnInit {
     Validators.email,
   ]);
 
+  nameFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  lastFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  discriptionFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  fieldFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  phoneFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  onlineSpendingWillFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  average3MonthMarketingSpendFormControl  = new FormControl('', [
+    Validators.required
+  ]);
+
+  businessAnualIncomeFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  maxOnlineMarketingSpendWillFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  isThirdQnsed() {
+    return this.dataservice.personalAndBusinessIntro.budgetChangeForyear !== null
+  }
+
+  isFifthQnsed() {
+    return this.dataservice.personalAndBusinessIntro.marketingGoalthisYear !== null
+  }
+
+  ismoreLettersRequired() {
+    return this.dataservice.personalAndBusinessIntro.businessDiscription.length > this.minDescriptionLen
+  }
 }

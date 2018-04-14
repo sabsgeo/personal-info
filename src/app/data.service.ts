@@ -17,12 +17,12 @@ export class DataService {
       'phone1' : '',
       'phone2' : ''
     },
-    'average3MonthMarketingSpend': 0,
-    'onlineSpendingWill': 0,
+    'average3MonthMarketingSpend': null,
+    'onlineSpendingWill': null,
     'budgetChangeForyear': null,
-    'businessAnualIncome': 0,
+    'businessAnualIncome': null,
     'marketingGoalthisYear': null,
-    'maxOnlineMarketingSpendWill': 0
+    'maxOnlineMarketingSpendWill': null
   }
   recomendedBudget = 0;
   constructor() { }

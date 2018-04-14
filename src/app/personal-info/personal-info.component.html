@@ -1,15 +1,25 @@
-<mat-card style="width:80%; margin-left: 7.5%">
+<mat-card style="width:80%; margin-left: 8.5%">
   <form class="example-form">
     <table cellspacing="0" style="width: 80%">
       <tr>
         <td>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="First name" [(ngModel)]="dataservice.personalAndBusinessIntro.name.firstName" [ngModelOptions]="{standalone: true}">
+            <input matInput [formControl]="nameFormControl" 
+            [errorStateMatcher]="matcher"
+            placeholder="First name" [(ngModel)]="dataservice.personalAndBusinessIntro.name.firstName">
+            <mat-error *ngIf="nameFormControl.hasError('required')">
+              Please enter First Name
+            </mat-error>
           </mat-form-field>
         </td>
         <td>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Last Name" [(ngModel)]="dataservice.personalAndBusinessIntro.name.lastName" [ngModelOptions]="{standalone: true}">
+          <input matInput [formControl]="lastFormControl"
+            [errorStateMatcher]="matcher"
+            placeholder="Last Name" [(ngModel)]="dataservice.personalAndBusinessIntro.name.lastName">
+            <mat-error *ngIf="lastFormControl.hasError('required')">
+              Please enter Last Name
+            </mat-error>
           </mat-form-field>
         </td>
       </tr>
@@ -21,23 +31,47 @@
       <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
         Please enter a valid email address
       </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email is required
+      </mat-error>
     </mat-form-field>
     <p>
       <mat-form-field style="width: 72.5%; height: 150px;">
-        <textarea matInput placeholder="Describe your business" style="height: 150px;" [(ngModel)]="dataservice.personalAndBusinessIntro.businessDiscription" [ngModelOptions]="{standalone: true}"></textarea>
+        <textarea matInput 
+        [formControl]="discriptionFormControl"
+        [errorStateMatcher]="matcher" 
+        placeholder="Describe your business" style="height: 150px;" [(ngModel)]="dataservice.personalAndBusinessIntro.businessDiscription"></textarea>
+        <mat-error *ngIf="discriptionFormControl.hasError('required')" style="margin-top:5px">
+          Desription is required
+        </mat-error>
       </mat-form-field>
+      <mat-error *ngIf="!ismoreLettersRequired()" style="font-size: 75%;margin-top:5px">
+        minimum {{minDescriptionLen - dataservice.personalAndBusinessIntro.businessDiscription.length}} letters required
+      </mat-error>
     </p>
     <br>
     <mat-form-field style="width: 40%;">
-      <input matInput placeholder="Field of work" [(ngModel)]="dataservice.personalAndBusinessIntro.fieldOfWork" [ngModelOptions]="{standalone: true}">
+      <input matInput 
+      [formControl]="fieldFormControl"
+      [errorStateMatcher]="matcher"
+      placeholder="Field of work" [(ngModel)]="dataservice.personalAndBusinessIntro.fieldOfWork">
+      <mat-error *ngIf="fieldFormControl.hasError('required')">
+        Field of work is required
+      </mat-error>
     </mat-form-field>
     <table style="width: 78.5%;" cellspacing="0">
       <tr>
         <td>
             <mat-form-field class="example-full-width">
                 <span matPrefix>+47&nbsp;</span>
-                <input type="tel" matInput placeholder="Company Telephone"  [(ngModel)]="dataservice.personalAndBusinessIntro.telephone.company" [ngModelOptions]="{standalone: true}">
-            </mat-form-field>
+                <input type="tel" matInput 
+                [formControl]="phoneFormControl"
+                [errorStateMatcher]="matcher"
+                placeholder="Company Telephone"  [(ngModel)]="dataservice.personalAndBusinessIntro.telephone.company">
+                <mat-error *ngIf="phoneFormControl.hasError('required')">
+                  Company Telephone is required
+                </mat-error>
+              </mat-form-field>
         </td>
         <td>
             <mat-form-field class="example-full-width">
@@ -61,7 +95,13 @@
   <form>
     <mat-form-field style="width: 40%;">
       <mat-icon matPrefix>attach_money</mat-icon>
-      <input type="number" matInput min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.average3MonthMarketingSpend" [ngModelOptions]="{standalone: true}">
+      <input type="number" matInput 
+      [formControl]="average3MonthMarketingSpendFormControl"
+      [errorStateMatcher]="matcher"
+      min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.average3MonthMarketingSpend">
+      <mat-error *ngIf="average3MonthMarketingSpendFormControl.hasError('required')">
+        Answer is required
+      </mat-error>
     </mat-form-field>
   </form>
 
@@ -72,7 +112,13 @@
   <form>
     <mat-form-field style="width: 40%;">
       <mat-icon matPrefix>attach_money</mat-icon>
-      <input type="number" matInput min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.onlineSpendingWill" [ngModelOptions]="{standalone: true}">
+      <input type="number" matInput 
+      [formControl]="onlineSpendingWillFormControl"
+      [errorStateMatcher]="matcher"
+      min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.onlineSpendingWill">
+      <mat-error *ngIf="onlineSpendingWillFormControl.hasError('required')">
+        Answer is required
+      </mat-error>
     </mat-form-field>
   </form>
 
@@ -84,6 +130,9 @@
       <mat-radio-button class="example-radio-button" *ngFor="let expectedBudgetChange of expectedBudgetChanges" [value]="expectedBudgetChange.value">
         {{expectedBudgetChange.txt}}
       </mat-radio-button>
+      <mat-error *ngIf="!isThirdQnsed()">
+        Answer is required
+      </mat-error>
   </mat-radio-group>
 
   <h3> Question 4</h3>
@@ -93,7 +142,13 @@
   <form>
     <mat-form-field style="width: 40%;">
       <mat-icon matPrefix>attach_money</mat-icon>
-      <input type="number" matInput min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.businessAnualIncome" [ngModelOptions]="{standalone: true}">
+      <input type="number" matInput
+      [formControl]="businessAnualIncomeFormControl"
+      [errorStateMatcher]="matcher" 
+      min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.businessAnualIncome">
+      <mat-error *ngIf="businessAnualIncomeFormControl.hasError('required')">
+        Answer is required
+      </mat-error>
     </mat-form-field>
   </form>
 
@@ -105,6 +160,9 @@
       <mat-radio-button class="example-radio-button" *ngFor="let expectedBusinessGoal of expectedBusinessGoals" [value]="expectedBusinessGoal.value">
         {{expectedBusinessGoal.txt}}
       </mat-radio-button>
+      <mat-error *ngIf="!isFifthQnsed()">
+        Answer is required
+      </mat-error>
   </mat-radio-group>
 
   <h3> Question 6</h3>
@@ -114,7 +172,13 @@
   <form>
     <mat-form-field style="width: 40%;">
       <mat-icon matPrefix>attach_money</mat-icon>
-      <input type="number" matInput min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.maxOnlineMarketingSpendWill" [ngModelOptions]="{standalone: true}">
+      <input type="number" matInput 
+      [formControl]="maxOnlineMarketingSpendWillFormControl"
+      [errorStateMatcher]="matcher" 
+      min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.maxOnlineMarketingSpendWill">
+      <mat-error *ngIf="maxOnlineMarketingSpendWillFormControl.hasError('required')">
+        Answer is required
+      </mat-error>
     </mat-form-field>
   </form>
 </mat-card>
