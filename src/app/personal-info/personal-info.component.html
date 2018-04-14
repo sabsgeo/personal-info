@@ -61,7 +61,7 @@
   <form>
     <mat-form-field style="width: 40%;">
       <mat-icon matPrefix>attach_money</mat-icon>
-      <input type="money" matInput min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.average3MonthMarketingSpend" [ngModelOptions]="{standalone: true}">
+      <input type="number" matInput min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.average3MonthMarketingSpend" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
   </form>
 
@@ -72,7 +72,7 @@
   <form>
     <mat-form-field style="width: 40%;">
       <mat-icon matPrefix>attach_money</mat-icon>
-      <input type="money" matInput min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.onlineSpendingWill" [ngModelOptions]="{standalone: true}">
+      <input type="number" matInput min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.onlineSpendingWill" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
   </form>
 
@@ -93,7 +93,7 @@
   <form>
     <mat-form-field style="width: 40%;">
       <mat-icon matPrefix>attach_money</mat-icon>
-      <input type="money" matInput min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.businessAnualIncome" [ngModelOptions]="{standalone: true}">
+      <input type="number" matInput min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.businessAnualIncome" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
   </form>
 
@@ -114,8 +114,7 @@
   <form>
     <mat-form-field style="width: 40%;">
       <mat-icon matPrefix>attach_money</mat-icon>
-      <input type="money" matInput min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.maxOnlineMarketingSpendWill" [ngModelOptions]="{standalone: true}">
+      <input type="number" matInput min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.maxOnlineMarketingSpendWill" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
   </form>
 </mat-card>
-<!-- <a [routerLink]="['/intro-video']">Next</a> -->
