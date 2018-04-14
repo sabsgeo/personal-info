@@ -26,6 +26,8 @@ import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { IntroVideoComponent } from './intro-video/intro-video.component';
 import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from '@angular/material/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { DataService } from './data.service';
@@ -50,6 +52,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     RouterModule,
     // RouterModule.forRoot(appRoutes, { useHash: true }),
+    HttpClientModule,
+    HttpModule,
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
