@@ -13,6 +13,7 @@ export class IntroVideoComponent implements OnInit {
   ngOnInit() {
     // console.log('d')
     // this.dataservice.changeProgressState(2);
+    console.log(this.dataservice.personalAndBusinessIntro);
   }
 
 }

@@ -1,41 +1,121 @@
 <mat-card style="width:80%; margin-left: 7.5%">
   <form class="example-form">
-    <table class="example-full-width" cellspacing="0" style="width: 80%">
+    <table cellspacing="0" style="width: 80%">
       <tr>
         <td>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="First name">
+            <input matInput placeholder="First name" [(ngModel)]="dataservice.personalAndBusinessIntro.name.firstName" [ngModelOptions]="{standalone: true}">
           </mat-form-field>
         </td>
         <td>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Last Name">
+            <input matInput placeholder="Last Name" [(ngModel)]="dataservice.personalAndBusinessIntro.name.lastName" [ngModelOptions]="{standalone: true}">
           </mat-form-field>
         </td>
       </tr>
     </table>
   
+    <mat-form-field style="width: 40%">
+      <input matInput placeholder="Email" [formControl]="emailFormControl"
+              [errorStateMatcher]="matcher" [(ngModel)]="dataservice.personalAndBusinessIntro.email">
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
     <p>
-      <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="Address">1600 Amphitheatre Pkwy</textarea>
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="Address 2"></textarea>
+      <mat-form-field style="width: 72.5%; height: 150px;">
+        <textarea matInput placeholder="Describe your business" style="height: 150px;" [(ngModel)]="dataservice.personalAndBusinessIntro.businessDiscription" [ngModelOptions]="{standalone: true}"></textarea>
       </mat-form-field>
     </p>
-  
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td><mat-form-field class="example-full-width">
-        <input matInput placeholder="City">
-      </mat-form-field></td>
-      <td><mat-form-field class="example-full-width">
-        <input matInput placeholder="State">
-      </mat-form-field></td>
-      <td><mat-form-field class="example-full-width">
-        <input matInput #postalCode maxlength="5" placeholder="Postal Code" value="94043">
-        <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
-      </mat-form-field></td>
-    </tr></table>
+    <br>
+    <mat-form-field style="width: 40%;">
+      <input matInput placeholder="Field of work" [(ngModel)]="dataservice.personalAndBusinessIntro.fieldOfWork" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <table style="width: 78.5%;" cellspacing="0">
+      <tr>
+        <td>
+            <mat-form-field class="example-full-width">
+                <span matPrefix>+47&nbsp;</span>
+                <input type="tel" matInput placeholder="Company Telephone"  [(ngModel)]="dataservice.personalAndBusinessIntro.telephone.company" [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field class="example-full-width">
+                <span matPrefix>+47 &nbsp;</span>
+                <input type="tel" matInput placeholder="Telephone number 1" [(ngModel)]="dataservice.personalAndBusinessIntro.telephone.phone1" [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+        <td>
+            <mat-form-field class="example-full-width">
+                <span matPrefix>+47&nbsp;</span>
+                <input type="tel" matInput placeholder="Telephone number 2" [(ngModel)]="dataservice.personalAndBusinessIntro.telephone.phone2" [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <br>
+  <h3> Question 1</h3>
+  <p>
+  How much did you spend on an average over the 3 last years on marketing ?
+  </p>
+  <form>
+    <mat-form-field style="width: 40%;">
+      <mat-icon matPrefix>attach_money</mat-icon>
+      <input type="money" matInput min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.average3MonthMarketingSpend" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+  </form>
+
+  <h3> Question 2</h3>
+  <p>
+  How much are you willing to spend on online marketing ?
+  </p>
+  <form>
+    <mat-form-field style="width: 40%;">
+      <mat-icon matPrefix>attach_money</mat-icon>
+      <input type="money" matInput min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.onlineSpendingWill" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+  </form>
+
+  <h3> Question 3</h3>
+  <p>
+      What changes will you make on your budget this year?
+  </p>
+  <mat-radio-group class="example-radio-group" [(ngModel)]="dataservice.personalAndBusinessIntro.budgetChangeForyear">
+      <mat-radio-button class="example-radio-button" *ngFor="let expectedBudgetChange of expectedBudgetChanges" [value]="expectedBudgetChange.value">
+        {{expectedBudgetChange.txt}}
+      </mat-radio-button>
+  </mat-radio-group>
+
+  <h3> Question 4</h3>
+  <p>
+    What is your bussiness annual income? 
+  </p>
+  <form>
+    <mat-form-field style="width: 40%;">
+      <mat-icon matPrefix>attach_money</mat-icon>
+      <input type="money" matInput min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.businessAnualIncome" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+  </form>
+
+  <h3> Question 5</h3>
+  <p>
+    What is the goal for your marketing this year?
+  </p>
+  <mat-radio-group class="example-radio-group" [(ngModel)]="dataservice.personalAndBusinessIntro.marketingGoalthisYear">
+      <mat-radio-button class="example-radio-button" *ngFor="let expectedBusinessGoal of expectedBusinessGoals" [value]="expectedBusinessGoal.value">
+        {{expectedBusinessGoal.txt}}
+      </mat-radio-button>
+  </mat-radio-group>
+
+  <h3> Question 6</h3>
+  <p>
+    What is the maximum amount you are willing to spend on online marketing?
+  </p>
+  <form>
+    <mat-form-field style="width: 40%;">
+      <mat-icon matPrefix>attach_money</mat-icon>
+      <input type="money" matInput min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.maxOnlineMarketingSpendWill" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
   </form>
 </mat-card>
 <!-- <a [routerLink]="['/intro-video']">Next</a> -->

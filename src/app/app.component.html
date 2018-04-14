@@ -5,11 +5,17 @@
     <div  style="margin-top: 20px; margin-left: 42%">
       <button mat-raised-button>Quit</button>
       <button mat-raised-button matStepperNext>Next</button>
+      <p><br></p>
     </div>
   </mat-step>
   <mat-step editable="true"> 
-    <ng-template matStepLabel>Fill out Details</ng-template>
+    <ng-template matStepLabel>Business Details</ng-template>
     <app-personal-info></app-personal-info>
+    <div  style="margin-top: 20px; margin-left: 42%">
+      <button mat-raised-button matStepperPrevious>Back</button>
+      <button mat-raised-button matStepperNext (click)="recomendedBudgetCal()">Next</button>
+      <p><br></p>
+    </div>
   </mat-step>
   <mat-step editable="true">
     <ng-template matStepLabel>Introduction video</ng-template>

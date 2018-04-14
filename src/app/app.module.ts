@@ -14,12 +14,18 @@ import {
           MatCheckboxModule,
           MatStepperModule,
           MatCardModule,
-          MatInputModule
+          MatInputModule,
+          MatFormFieldModule,
+          MatIconModule,
+          MatRadioModule
        } from '@angular/material';
        
 import { WelcomeComponent } from './welcome/welcome.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { IntroVideoComponent } from './intro-video/intro-video.component';
+import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from '@angular/material/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 
 import { DataService } from './data.service';
 
@@ -43,14 +49,20 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     RouterModule,
     // RouterModule.forRoot(appRoutes, { useHash: true }),
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
     MatButtonModule,
     MatCheckboxModule,
     MatStepperModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    MatIconModule,
+    MatRadioModule
   ],
   providers: [
-    DataService
+    DataService,
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],
   bootstrap: [AppComponent]
 })
