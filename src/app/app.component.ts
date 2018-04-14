@@ -17,13 +17,10 @@ export class AppComponent {
     console.log(this.dataservice.personalAndBusinessIntro);
     let recomendedBudget = this.dataservice.personalAndBusinessIntro.onlineSpendingWill + 
                            (this.dataservice.personalAndBusinessIntro.onlineSpendingWill * this.dataservice.personalAndBusinessIntro.budgetChangeForyear) / 100;
-    console.log(recomendedBudget);
     recomendedBudget = recomendedBudget + (recomendedBudget * this.annualBudgetPercentageAddition(recomendedBudget)) / 100;
-    console.log(recomendedBudget);
     recomendedBudget = recomendedBudget + (recomendedBudget * this.marketingGoalthisYearPercentageAddition()) /100;
-    console.log(recomendedBudget);
     recomendedBudget = recomendedBudget + (recomendedBudget * this.recomendedBudgetToMaxLimitPercentageAddition()) / 100;
-    console.log(recomendedBudget);
+    recomendedBudget = Math.round(recomendedBudget)
     this.dataservice.recomendedBudget = recomendedBudget;
     return recomendedBudget;
   }
