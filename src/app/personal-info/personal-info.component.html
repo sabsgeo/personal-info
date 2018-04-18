@@ -93,12 +93,13 @@
   How much did you spend on an average over the 3 last years on marketing ?
   </p>
   <form>
-    <mat-form-field style="width: 40%;">
-      <mat-icon matPrefix svgIcon="norw-curr"></mat-icon>
-      <input type="number" matInput 
+    <mat-form-field style="width: 25%;">
+      <input type="text" matInput 
       [formControl]="average3MonthMarketingSpendFormControl"
       [errorStateMatcher]="matcher"
+      (keyup)="average3MonthMarketingSpendKeyup($event)"
       min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.average3MonthMarketingSpend" required>
+      <span matSuffix><strong>kr</strong></span>
       <mat-error *ngIf="average3MonthMarketingSpendFormControl.hasError('required')">
         Answer is required
       </mat-error>
@@ -110,12 +111,13 @@
   How much are you willing to spend on online marketing ?
   </p>
   <form>
-    <mat-form-field style="width: 40%;">
-      <mat-icon matPrefix svgIcon="norw-curr"></mat-icon>
-      <input type="number" matInput 
+    <mat-form-field style="width: 25%;">
+      <input type="text" matInput 
       [formControl]="onlineSpendingWillFormControl"
       [errorStateMatcher]="matcher"
+      (keyup)="onlineSpendingWillKeyup($event)"
       min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.onlineSpendingWill" required>
+      <span matSuffix><strong>kr</strong></span>
       <mat-error *ngIf="onlineSpendingWillFormControl.hasError('required')">
         Answer is required
       </mat-error>
@@ -140,12 +142,13 @@
     What is your bussiness annual income? 
   </p>
   <form>
-    <mat-form-field style="width: 40%;">
-      <mat-icon matPrefix svgIcon="norw-curr"></mat-icon>
-      <input type="number" matInput
+    <mat-form-field style="width: 25%;">
+      <input type="text" matInput
       [formControl]="businessAnualIncomeFormControl"
       [errorStateMatcher]="matcher" 
+      (keyup)="businessAnualIncomeKeyup($event)"
       min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.businessAnualIncome" required>
+      <span matSuffix><strong>kr</strong></span>
       <mat-error *ngIf="businessAnualIncomeFormControl.hasError('required')">
         Answer is required
       </mat-error>
@@ -170,12 +173,14 @@
     What is the maximum amount you are willing to spend on online marketing?
   </p>
   <form>
-    <mat-form-field style="width: 40%;">
-      <mat-icon matPrefix svgIcon="norw-curr"></mat-icon>
-      <input type="number" matInput 
+    <mat-form-field style="width: 25%;">
+      <!-- <mat-icon matPrefix svgIcon="norw-curr"></mat-icon> -->
+      <input type="text" matInput 
       [formControl]="maxOnlineMarketingSpendWillFormControl"
       [errorStateMatcher]="matcher" 
+      (keyup)="maxOnlineMarketingSpendWillKeyup($event)"
       min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.maxOnlineMarketingSpendWill" required>
+      <span matSuffix><strong>kr</strong></span>
       <mat-error *ngIf="maxOnlineMarketingSpendWillFormControl.hasError('required')">
         Answer is required
       </mat-error>

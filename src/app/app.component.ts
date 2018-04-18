@@ -19,8 +19,8 @@ export class AppComponent {
 
   recomendedBudgetCal() {
     console.log(this.dataservice.personalAndBusinessIntro);
-    let recomendedBudget = this.dataservice.personalAndBusinessIntro.onlineSpendingWill + 
-                           (this.dataservice.personalAndBusinessIntro.onlineSpendingWill * this.dataservice.personalAndBusinessIntro.budgetChangeForyear) / 100;
+    let recomendedBudget = this.removeSpace(this.dataservice.personalAndBusinessIntro.onlineSpendingWill) + 
+                           (this.removeSpace(this.dataservice.personalAndBusinessIntro.onlineSpendingWill) * this.dataservice.personalAndBusinessIntro.budgetChangeForyear) / 100;
     recomendedBudget = recomendedBudget + (recomendedBudget * this.annualBudgetPercentageAddition(recomendedBudget)) / 100;
     recomendedBudget = recomendedBudget + (recomendedBudget * this.marketingGoalthisYearPercentageAddition()) /100;
     recomendedBudget = recomendedBudget + (recomendedBudget * this.recomendedBudgetToMaxLimitPercentageAddition()) / 100;
@@ -30,7 +30,7 @@ export class AppComponent {
   }
 
   annualBudgetPercentageAddition(recomendedBudget) {
-    let recPercentage = ( recomendedBudget / this.dataservice.personalAndBusinessIntro.businessAnualIncome ) * 100;
+    let recPercentage = ( recomendedBudget / this.removeSpace(this.dataservice.personalAndBusinessIntro.businessAnualIncome )) * 100;
     let recPercentageThreshold = 5;
     if (recPercentage <= recPercentageThreshold) {
       return 0
@@ -49,7 +49,7 @@ export class AppComponent {
   }
 
   recomendedBudgetToMaxLimitPercentageAddition() {
-    if (this.dataservice.personalAndBusinessIntro.maxOnlineMarketingSpendWill > this.dataservice.personalAndBusinessIntro.onlineSpendingWill) {
+    if (this.removeSpace(this.dataservice.personalAndBusinessIntro.maxOnlineMarketingSpendWill) > this.removeSpace(this.dataservice.personalAndBusinessIntro.onlineSpendingWill)) {
       return 0
     } else {
       return -15
@@ -62,15 +62,15 @@ export class AppComponent {
     this.dataservice.personalAndBusinessIntro.name.lastName !== '' &&
     this.dataservice.personalAndBusinessIntro.email !== '' &&
     this.dataservice.personalAndBusinessIntro.businessDiscription !== '' &&
-    this.dataservice.personalAndBusinessIntro.businessDiscription.length > 150 &&
+    this.dataservice.personalAndBusinessIntro.businessDiscription.length > 50 &&
     this.dataservice.personalAndBusinessIntro.fieldOfWork !== '' &&
     this.dataservice.personalAndBusinessIntro.telephone.company !== '' &&
-    this.dataservice.personalAndBusinessIntro.average3MonthMarketingSpend !== null &&
-    this.dataservice.personalAndBusinessIntro.onlineSpendingWill !== null &&
+    this.removeSpace(this.dataservice.personalAndBusinessIntro.average3MonthMarketingSpend) !== null &&
+    this.removeSpace(this.dataservice.personalAndBusinessIntro.onlineSpendingWill) !== null &&
     this.dataservice.personalAndBusinessIntro.budgetChangeForyear !== null &&
-    this.dataservice.personalAndBusinessIntro.businessAnualIncome !== null &&
+    this.removeSpace(this.dataservice.personalAndBusinessIntro.businessAnualIncome) !== null &&
     this.dataservice.personalAndBusinessIntro.marketingGoalthisYear  !== null &&
-    this.dataservice.personalAndBusinessIntro.maxOnlineMarketingSpendWill !== null
+    this.removeSpace(this.dataservice.personalAndBusinessIntro.maxOnlineMarketingSpendWill) !== null
 
     ) {
       document.getElementById('detailstovideo').click();
@@ -86,6 +86,15 @@ export class AppComponent {
     this.snackBar.open(message, action, {
       duration: 2000,
     });
+  }
+
+  removeSpace(numb) {
+    let conNum = parseInt(numb.replace().replace(/ /g,''))
+    if ( isNaN(conNum) ) {
+      return null;
+    } else {
+      return conNum;
+    }
   }
 
 }
