@@ -20,18 +20,31 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 
 export class PersonalInfoComponent implements OnInit {
+  
   public expectedBudgetChanges = [
-    {'txt': 'I want to increase my budge', 'value': 40},
-    {'txt': 'I want to use the same amount', 'value': 20},
-    {'txt': 'I want to lower my budget', 'value': -20}
+    {'txt': 'Et høyt budsjett som hjelper meg å satse', 'value': 15},
+    {'txt': 'Et balansert budsjett som hjelper meg å utvikle min bedrift kontrolert', 'value': 0},
+    {'txt': 'Et lite budsjett som hjelper meg å holde kostnadene lave', 'value': -15},
+    {'txt': 'Ingen av alternativene passer meg', 'value': -1}
   ];
 
   public expectedBusinessGoals = [
-    {'txt': "My goal is to grow and earn more money", 'value': 10},
-    {'txt': "My goal is to keep my current income stable" , 'value': 0},
-    {'txt': "non of the above", 'value': -1}
+    {'txt': "Jeg ønsker å vokse bedriften og øke omsettningen betraktelig", 'value': 15},
+    {'txt': "Jeg ønsker å vokse litt samt øke omsettningen" , 'value': 0},
+    {'txt': "Jeg er konfortabel slik ting er, men ønsker mer stabilitet", 'value': -15},
+    {'txt': "Ingen av alternativene passer meg" , 'value': -1},
   ];
-  
+
+  public businessAnualIncomeCatagories = [
+    {'txt': "0 kr - 50 000 kr", 'value': '0-50000'},
+    {'txt': "50 000 kr - 100 000 kr" , 'value': '50000-100000'},
+    {'txt': "100 000 kr - 250 000 kr", 'value': '100000-250000'},
+    {'txt': "500 000 kr - 1 000 000 kr" , 'value': '500000-1000000'},
+    {'txt': "1 000 000 kr - 2 000 000 kr" , 'value': '1000000-2000000'},
+    {'txt': "2 000 000+ kr" , 'value': '2 000 000+'},
+    {'txt': "Vet ikke" , 'value': 'None'},
+  ]
+
   public minDescriptionLen = 50;
 
   public matcher = new MyErrorStateMatcher();
@@ -69,19 +82,7 @@ export class PersonalInfoComponent implements OnInit {
     Validators.required
   ]);
 
-  onlineSpendingWillFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  average3MonthMarketingSpendFormControl  = new FormControl('', [
-    Validators.required
-  ]);
-
   businessAnualIncomeFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  maxOnlineMarketingSpendWillFormControl = new FormControl('', [
     Validators.required
   ]);
 
@@ -89,31 +90,21 @@ export class PersonalInfoComponent implements OnInit {
     return this.dataservice.personalAndBusinessIntro.budgetChangeForyear !== null
   }
 
-  isFifthQnsed() {
+  isSecondQnsed() {
     return this.dataservice.personalAndBusinessIntro.marketingGoalthisYear !== null
+  }
+
+  isFourthQnsed () {
+    return this.dataservice.personalAndBusinessIntro.businessAnualIncomeCatagorie !== null
+
   }
 
   ismoreLettersRequired() {
     return this.dataservice.personalAndBusinessIntro.businessDiscription.length > this.minDescriptionLen
   }
 
-  maxOnlineMarketingSpendWillKeyup(event) {
-    let number = this.dataservice.personalAndBusinessIntro.maxOnlineMarketingSpendWill.replace(/ /g,'').replace(/[^0-9]/g, '') ;
-    this.dataservice.personalAndBusinessIntro.maxOnlineMarketingSpendWill =  number.replace(/\B(?=(\d{3})+(?!\d))/g, " ")
-  }
-
   businessAnualIncomeKeyup(event) {
     let number = this.dataservice.personalAndBusinessIntro.businessAnualIncome.replace(/ /g,'').replace(/[^0-9]/g, '') ;
     this.dataservice.personalAndBusinessIntro.businessAnualIncome =  number.replace(/\B(?=(\d{3})+(?!\d))/g, " ")
-  }
-
-  onlineSpendingWillKeyup(event) {
-    let number = this.dataservice.personalAndBusinessIntro.onlineSpendingWill.replace(/ /g,'').replace(/[^0-9]/g, '') ;
-    this.dataservice.personalAndBusinessIntro.onlineSpendingWill =  number.replace(/\B(?=(\d{3})+(?!\d))/g, " ")
-  }
-
-  average3MonthMarketingSpendKeyup(event) {
-    let number = this.dataservice.personalAndBusinessIntro.average3MonthMarketingSpend.replace(/ /g,'').replace(/[^0-9]/g, '') ;
-    this.dataservice.personalAndBusinessIntro.average3MonthMarketingSpend =  number.replace(/\B(?=(\d{3})+(?!\d))/g, " ")
   }
 }

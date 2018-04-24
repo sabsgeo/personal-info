@@ -87,8 +87,85 @@
       </tr>
     </table>
   </form>
-  <br>
-  <h3> Question 1</h3>
+  <br> 
+  
+  <h3> Spørsmål 1</h3>
+  <p>
+    Hvor mye ren brutto omsettning hadde din bedrift I fjor? 
+    Er du en nystartet bedrift, kan du føre inn hvor mye du ser 
+    for deg å omsette for ditt første fulle år i drift.
+  </p>
+  <form>
+    <mat-form-field style="width: 25%;">
+      <input type="text" matInput
+      [formControl]="businessAnualIncomeFormControl"
+      [errorStateMatcher]="matcher" 
+      (keyup)="businessAnualIncomeKeyup($event)"
+      min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.businessAnualIncome" required>
+      <span matSuffix><strong>kr</strong></span>
+      <mat-error *ngIf="businessAnualIncomeFormControl.hasError('required')">
+        Answer is required
+      </mat-error>
+    </mat-form-field>
+  </form>
+
+  <h3> Spørsmål 2</h3>
+  <p>
+    Hva er målet ditt i forhold til vekst i år ?
+  </p>
+  <mat-radio-group class="example-radio-group" [(ngModel)]="dataservice.personalAndBusinessIntro.marketingGoalthisYear">
+      <mat-radio-button class="example-radio-button" *ngFor="let expectedBusinessGoal of expectedBusinessGoals" [value]="expectedBusinessGoal.value">
+        {{expectedBusinessGoal.txt}}
+      </mat-radio-button>
+      <mat-error *ngIf="!isSecondQnsed()">
+        Answer is required
+      </mat-error>
+  </mat-radio-group>
+
+
+  <h3> Spørsmål 3</h3>
+  <p>
+    Hvilket type budsjett ser du etter ?
+  </p>
+  <mat-radio-group class="example-radio-group" [(ngModel)]="dataservice.personalAndBusinessIntro.budgetChangeForyear">
+      <mat-radio-button class="example-radio-button" *ngFor="let expectedBudgetChange of expectedBudgetChanges" [value]="expectedBudgetChange.value">
+        {{expectedBudgetChange.txt}}
+      </mat-radio-button>
+      <mat-error *ngIf="!isThirdQnsed()">
+        Answer is required
+      </mat-error>
+  </mat-radio-group>
+
+  <h3> Spørsmål 4</h3>
+  <p>
+    Alle bedrifter er forskjellige. For å kunne gi et mer skreddersydd og riktig budsjett, 
+    ser vi gjerne at du plasseser bedriften din i en av budsjett-kategoriene nevt under, 
+    i forhold til hvor mye du mener er riktig for bedriften å burde bruke på online markedsføring årlig.
+  </p>
+  <mat-radio-group class="example-radio-group" [(ngModel)]="dataservice.personalAndBusinessIntro.businessAnualIncomeCatagorie">
+    <mat-radio-button class="example-radio-button" *ngFor="let expectedBudgetChange1 of businessAnualIncomeCatagories" [value]="expectedBudgetChange1.value">
+      {{expectedBudgetChange1.txt}}
+    </mat-radio-button>
+    <mat-error *ngIf="!isFourthQnsed()">
+      Answer is required
+    </mat-error>
+  </mat-radio-group>
+
+  <!-- <form>
+    <mat-form-field style="width: 25%;">
+      <input type="text" matInput
+      [formControl]="businessAnualIncomeFormControl"
+      [errorStateMatcher]="matcher" 
+      (keyup)="businessAnualIncomeKeyup($event)"
+      min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.businessAnualIncome" required>
+      <span matSuffix><strong>kr</strong></span>
+      <mat-error *ngIf="businessAnualIncomeFormControl.hasError('required')">
+        Answer is required
+      </mat-error>
+    </mat-form-field>
+  </form> -->
+
+  <!-- <h3> Question 1</h3>
   <p>
   How much did you spend on an average over the 3 last years on marketing ?
   </p>
@@ -124,57 +201,12 @@
     </mat-form-field>
   </form>
 
-  <h3> Question 3</h3>
-  <p>
-      What changes will you make on your budget this year?
-  </p>
-  <mat-radio-group class="example-radio-group" [(ngModel)]="dataservice.personalAndBusinessIntro.budgetChangeForyear">
-      <mat-radio-button class="example-radio-button" *ngFor="let expectedBudgetChange of expectedBudgetChanges" [value]="expectedBudgetChange.value">
-        {{expectedBudgetChange.txt}}
-      </mat-radio-button>
-      <mat-error *ngIf="!isThirdQnsed()">
-        Answer is required
-      </mat-error>
-  </mat-radio-group>
-
-  <h3> Question 4</h3>
-  <p>
-    What is your bussiness annual income? 
-  </p>
-  <form>
-    <mat-form-field style="width: 25%;">
-      <input type="text" matInput
-      [formControl]="businessAnualIncomeFormControl"
-      [errorStateMatcher]="matcher" 
-      (keyup)="businessAnualIncomeKeyup($event)"
-      min=0 [(ngModel)]="dataservice.personalAndBusinessIntro.businessAnualIncome" required>
-      <span matSuffix><strong>kr</strong></span>
-      <mat-error *ngIf="businessAnualIncomeFormControl.hasError('required')">
-        Answer is required
-      </mat-error>
-    </mat-form-field>
-  </form>
-
-  <h3> Question 5</h3>
-  <p>
-    What is the goal for your marketing this year?
-  </p>
-  <mat-radio-group class="example-radio-group" [(ngModel)]="dataservice.personalAndBusinessIntro.marketingGoalthisYear">
-      <mat-radio-button class="example-radio-button" *ngFor="let expectedBusinessGoal of expectedBusinessGoals" [value]="expectedBusinessGoal.value">
-        {{expectedBusinessGoal.txt}}
-      </mat-radio-button>
-      <mat-error *ngIf="!isFifthQnsed()">
-        Answer is required
-      </mat-error>
-  </mat-radio-group>
-
   <h3> Question 6</h3>
   <p>
     What is the maximum amount you are willing to spend on online marketing?
   </p>
   <form>
     <mat-form-field style="width: 25%;">
-      <!-- <mat-icon matPrefix svgIcon="norw-curr"></mat-icon> -->
       <input type="text" matInput 
       [formControl]="maxOnlineMarketingSpendWillFormControl"
       [errorStateMatcher]="matcher" 
@@ -185,5 +217,5 @@
         Answer is required
       </mat-error>
     </mat-form-field>
-  </form>
+  </form> -->
 </mat-card>

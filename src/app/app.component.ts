@@ -18,29 +18,46 @@ export class AppComponent {
   }
 
   recomendedBudgetCal() {
-    console.log(this.dataservice.personalAndBusinessIntro);
-    let recomendedBudget = this.removeSpace(this.dataservice.personalAndBusinessIntro.onlineSpendingWill) + 
-                           (this.removeSpace(this.dataservice.personalAndBusinessIntro.onlineSpendingWill) * this.dataservice.personalAndBusinessIntro.budgetChangeForyear) / 100;
-    recomendedBudget = recomendedBudget + (recomendedBudget * this.annualBudgetPercentageAddition(recomendedBudget)) / 100;
+
+    let recomendedBudget = this.annualBudgetPercentageAddition()
+    recomendedBudget = this.inRangeKeeping(recomendedBudget);
     recomendedBudget = recomendedBudget + (recomendedBudget * this.marketingGoalthisYearPercentageAddition()) /100;
-    recomendedBudget = recomendedBudget + (recomendedBudget * this.recomendedBudgetToMaxLimitPercentageAddition()) / 100;
+    recomendedBudget = recomendedBudget + (recomendedBudget * this.budgetChangeForyearPercentageAddition()) / 100;
     recomendedBudget = Math.round(recomendedBudget)
     this.dataservice.recomendedBudget = recomendedBudget;
     return recomendedBudget;
   }
 
-  annualBudgetPercentageAddition(recomendedBudget) {
-    let recPercentage = ( recomendedBudget / this.removeSpace(this.dataservice.personalAndBusinessIntro.businessAnualIncome )) * 100;
-    let recPercentageThreshold = 5;
-    if (recPercentage <= recPercentageThreshold) {
-      return 0
-    } else {
-      return 20
-    }
+  annualBudgetPercentageAddition() {
+    return this.removeSpace(this.dataservice.personalAndBusinessIntro.businessAnualIncome) * 0.020;
+  }
 
+  inRangeKeeping(recomendedBudget) {
+    let splitCat = this.dataservice.personalAndBusinessIntro.businessAnualIncomeCatagorie.split('-');
+    splitCat = [parseInt(splitCat[0]), parseInt(splitCat[1])];
+    if ( this.dataservice.personalAndBusinessIntro.businessAnualIncomeCatagorie === 'None'){
+      return recomendedBudget;
+    }
+    else if (isNaN(splitCat[1])) {
+      return 2000000;
+    } 
+    else {
+      if (splitCat[0] < recomendedBudget && splitCat[1] > recomendedBudget) {
+        return recomendedBudget;
+      } else {
+        if (recomendedBudget > splitCat[1]) {
+          return  splitCat[1]
+        } else if ( splitCat[0] > recomendedBudget) {
+          return splitCat[0]
+        } else {
+          return recomendedBudget;
+        }
+      }
+    }
   }
 
   marketingGoalthisYearPercentageAddition() {
+    console.log(this.dataservice.personalAndBusinessIntro.marketingGoalthisYear);
     if (this.dataservice.personalAndBusinessIntro.marketingGoalthisYear > 0) {
       return this.dataservice.personalAndBusinessIntro.marketingGoalthisYear
     } else {
@@ -48,13 +65,16 @@ export class AppComponent {
     }
   }
 
-  recomendedBudgetToMaxLimitPercentageAddition() {
-    if (this.removeSpace(this.dataservice.personalAndBusinessIntro.maxOnlineMarketingSpendWill) > this.removeSpace(this.dataservice.personalAndBusinessIntro.onlineSpendingWill)) {
-      return 0
+
+  budgetChangeForyearPercentageAddition() {
+    console.log(this.dataservice.personalAndBusinessIntro.budgetChangeForyear);
+    if (this.dataservice.personalAndBusinessIntro.budgetChangeForyear > 0) {
+      return this.dataservice.personalAndBusinessIntro.budgetChangeForyear
     } else {
-      return -15
+      return 0
     }
   }
+
 
   validateEntries() {
     if(
@@ -65,12 +85,10 @@ export class AppComponent {
     this.dataservice.personalAndBusinessIntro.businessDiscription.length > 50 &&
     this.dataservice.personalAndBusinessIntro.fieldOfWork !== '' &&
     this.dataservice.personalAndBusinessIntro.telephone.company !== '' &&
-    this.removeSpace(this.dataservice.personalAndBusinessIntro.average3MonthMarketingSpend) !== null &&
-    this.removeSpace(this.dataservice.personalAndBusinessIntro.onlineSpendingWill) !== null &&
     this.dataservice.personalAndBusinessIntro.budgetChangeForyear !== null &&
     this.removeSpace(this.dataservice.personalAndBusinessIntro.businessAnualIncome) !== null &&
-    this.dataservice.personalAndBusinessIntro.marketingGoalthisYear  !== null &&
-    this.removeSpace(this.dataservice.personalAndBusinessIntro.maxOnlineMarketingSpendWill) !== null
+    this.dataservice.personalAndBusinessIntro.businessAnualIncomeCatagorie !== null &&
+    this.dataservice.personalAndBusinessIntro.marketingGoalthisYear  !== null
 
     ) {
       document.getElementById('detailstovideo').click();
