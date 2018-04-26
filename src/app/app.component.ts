@@ -82,7 +82,7 @@ export class AppComponent {
     this.dataservice.personalAndBusinessIntro.name.lastName !== '' &&
     this.dataservice.personalAndBusinessIntro.email !== '' &&
     this.dataservice.personalAndBusinessIntro.businessDiscription !== '' &&
-    this.dataservice.personalAndBusinessIntro.businessDiscription.length > 50 &&
+    this.dataservice.personalAndBusinessIntro.businessDiscription.length > 10 &&
     this.dataservice.personalAndBusinessIntro.fieldOfWork !== '' &&
     this.dataservice.personalAndBusinessIntro.telephone.company !== '' &&
     this.dataservice.personalAndBusinessIntro.budgetChangeForyear !== null &&

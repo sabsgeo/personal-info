@@ -45,7 +45,7 @@ export class PersonalInfoComponent implements OnInit {
     {'txt': "Vet ikke" , 'value': 'None'},
   ]
 
-  public minDescriptionLen = 50;
+  public minDescriptionLen = 10;
 
   public matcher = new MyErrorStateMatcher();
   constructor(public dataservice: DataService, 
