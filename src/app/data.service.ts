@@ -21,8 +21,8 @@ export class DataService {
     'businessAnualIncome': null,
     'businessAnualIncomeCatagorie': null,
     'marketingGoalthisYear': null,
+    'recomendedBudget': 0
   }
-  recomendedBudget = 0;
   constructor() { }
 
 }
