@@ -58,20 +58,20 @@ export class AppComponent {
 
   marketingGoalthisYearPercentageAddition() {
     console.log(this.dataservice.personalAndBusinessIntro.marketingGoalthisYear);
-    if (this.dataservice.personalAndBusinessIntro.marketingGoalthisYear > 0) {
-      return this.dataservice.personalAndBusinessIntro.marketingGoalthisYear
+    if (this.dataservice.personalAndBusinessIntro.marketingGoalthisYear !== -1) {
+      return this.dataservice.personalAndBusinessIntro.marketingGoalthisYear;
     } else {
-      return 0
+      return 0;
     }
   }
 
 
   budgetChangeForyearPercentageAddition() {
     console.log(this.dataservice.personalAndBusinessIntro.budgetChangeForyear);
-    if (this.dataservice.personalAndBusinessIntro.budgetChangeForyear > 0) {
-      return this.dataservice.personalAndBusinessIntro.budgetChangeForyear
+    if (this.dataservice.personalAndBusinessIntro.budgetChangeForyear !== -1) {
+      return this.dataservice.personalAndBusinessIntro.budgetChangeForyear;
     } else {
-      return 0
+      return 0;
     }
   }
 
@@ -81,8 +81,8 @@ export class AppComponent {
     this.dataservice.personalAndBusinessIntro.name.firstName !== '' &&
     this.dataservice.personalAndBusinessIntro.name.lastName !== '' &&
     this.dataservice.personalAndBusinessIntro.email !== '' &&
-    this.dataservice.personalAndBusinessIntro.businessDiscription !== '' &&
-    this.dataservice.personalAndBusinessIntro.businessDiscription.length > 10 &&
+    // this.dataservice.personalAndBusinessIntro.businessDiscription !== '' &&
+    // this.dataservice.personalAndBusinessIntro.businessDiscription.length > 10 &&
     this.dataservice.personalAndBusinessIntro.fieldOfWork !== '' &&
     this.dataservice.personalAndBusinessIntro.telephone.company !== '' &&
     this.dataservice.personalAndBusinessIntro.budgetChangeForyear !== null &&

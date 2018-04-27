@@ -41,13 +41,13 @@
         [formControl]="discriptionFormControl"
         [errorStateMatcher]="matcher" 
         placeholder="Beskriv bedriften din" style="height: 150px;" [(ngModel)]="dataservice.personalAndBusinessIntro.businessDiscription" required></textarea>
-        <mat-error *ngIf="discriptionFormControl.hasError('required')" style="margin-top:5px">
+        <!-- <mat-error *ngIf="discriptionFormControl.hasError('required')" style="margin-top:5px">
           Beskrivelse er påkrevd
-        </mat-error>
+        </mat-error> -->
       </mat-form-field>
-      <mat-error *ngIf="!ismoreLettersRequired()" style="font-size: 75%;margin-top:5px">
+      <!-- <mat-error *ngIf="!ismoreLettersRequired()" style="font-size: 75%;margin-top:5px">
         Minimum {{minDescriptionLen - dataservice.personalAndBusinessIntro.businessDiscription.length}} bokstaver
-      </mat-error>
+      </mat-error> -->
     </p>
     <br>
     <mat-form-field style="width: 40%;">

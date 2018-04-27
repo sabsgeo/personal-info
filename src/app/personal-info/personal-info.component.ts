@@ -23,15 +23,15 @@ export class PersonalInfoComponent implements OnInit {
   
   public expectedBudgetChanges = [
     {'txt': 'Et høyt budsjett som hjelper meg å satse', 'value': 15},
-    {'txt': 'Et balansert budsjett som hjelper meg å utvikle min bedrift kontrolert', 'value': 0},
-    {'txt': 'Et lite budsjett som hjelper meg å holde kostnadene lave', 'value': -15},
+    {'txt': 'Et balansert budsjett som hjelper meg å utvikle min bedrift kontrolert', 'value': 5},
+    {'txt': 'Et lite budsjett som hjelper meg å holde kostnadene lave', 'value': -10},
     {'txt': 'Ingen av alternativene passer meg', 'value': -1}
   ];
 
   public expectedBusinessGoals = [
     {'txt': "Jeg ønsker å vokse bedriften og øke omsettningen betraktelig", 'value': 15},
-    {'txt': "Jeg ønsker å vokse litt samt øke omsettningen" , 'value': 0},
-    {'txt': "Jeg er konfortabel slik ting er, men ønsker mer stabilitet", 'value': -15},
+    {'txt': "Jeg ønsker å vokse litt samt øke omsettningen" , 'value': 5},
+    {'txt': "Jeg er konfortabel slik ting er, men ønsker mer stabilitet", 'value': -10},
     {'txt': "Ingen av alternativene passer meg" , 'value': -1},
   ];
 
@@ -70,9 +70,9 @@ export class PersonalInfoComponent implements OnInit {
     Validators.required
   ]);
 
-  discriptionFormControl = new FormControl('', [
-    Validators.required
-  ]);
+  // discriptionFormControl = new FormControl('', [
+  //   Validators.required
+  // ]);
 
   fieldFormControl = new FormControl('', [
     Validators.required
@@ -99,9 +99,9 @@ export class PersonalInfoComponent implements OnInit {
 
   }
 
-  ismoreLettersRequired() {
-    return this.dataservice.personalAndBusinessIntro.businessDiscription.length > this.minDescriptionLen
-  }
+  // ismoreLettersRequired() {
+  //   return this.dataservice.personalAndBusinessIntro.businessDiscription.length > this.minDescriptionLen
+  // }
 
   businessAnualIncomeKeyup(event) {
     let number = this.dataservice.personalAndBusinessIntro.businessAnualIncome.replace(/ /g,'').replace(/[^0-9]/g, '') ;
