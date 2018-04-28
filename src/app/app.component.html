@@ -7,7 +7,7 @@
       <tr>
         <td style="width: 100%" align="center">
     <div>
-      <button mat-raised-button>Tilbake</button>
+      <button mat-raised-button (click)="navigateToSite()">Tilbake</button>
       <button mat-raised-button matStepperNext>neste</button>
       <p><br></p>
     </div>
@@ -28,5 +28,8 @@
   <mat-step editable="true">
     <ng-template matStepLabel>Annbefalt budget</ng-template>
     <app-intro-video></app-intro-video>
+    <div  style="margin-top: 20px; margin-left: 42%; margin-bottom: 5px">
+      <button mat-raised-button (click)="navigateToSite()">Tilbake til hjemmesiden</button>
+    </div>
   </mat-step>
 </mat-horizontal-stepper>

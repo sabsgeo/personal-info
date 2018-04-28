@@ -128,4 +128,9 @@ export class AppComponent {
     }
   }
 
+
+  navigateToSite() {
+    window.location.href = 'http://www.kfberge.no/';
+  }
+
 }
