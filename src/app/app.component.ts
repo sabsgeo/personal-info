@@ -24,16 +24,19 @@ export class AppComponent {
     recomendedBudget = recomendedBudget + (recomendedBudget * this.marketingGoalthisYearPercentageAddition()) /100;
     recomendedBudget = recomendedBudget + (recomendedBudget * this.budgetChangeForyearPercentageAddition()) / 100;
     recomendedBudget = Math.round(recomendedBudget)
-    this.dataservice.personalAndBusinessIntro.recomendedBudget = recomendedBudget;
 
-    this.http.post('https://p5adp8wc1m.execute-api.ap-south-1.amazonaws.com/testing/', this.dataservice.personalAndBusinessIntro)
-    .toPromise()
-    .then((suss) => {
-      console.log(suss);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+    if (this.dataservice.personalAndBusinessIntro.recomendedBudget !== recomendedBudget) {
+      this.dataservice.personalAndBusinessIntro.recomendedBudget = recomendedBudget;
+
+      this.http.post('https://p5adp8wc1m.execute-api.ap-south-1.amazonaws.com/testing/', this.dataservice.personalAndBusinessIntro)
+      .toPromise()
+      .then((suss) => {
+        console.log(suss);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    }
 
     return recomendedBudget;
   }
