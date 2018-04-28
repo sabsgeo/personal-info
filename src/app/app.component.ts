@@ -28,7 +28,7 @@ export class AppComponent {
     if (this.dataservice.personalAndBusinessIntro.recomendedBudget !== recomendedBudget) {
       this.dataservice.personalAndBusinessIntro.recomendedBudget = recomendedBudget;
 
-      this.http.post('https://p5adp8wc1m.execute-api.ap-south-1.amazonaws.com/testing/', this.dataservice.personalAndBusinessIntro)
+      this.http.post('https://ft56awruk1.execute-api.us-east-1.amazonaws.com/production', this.dataservice.personalAndBusinessIntro)
       .toPromise()
       .then((suss) => {
         console.log(suss);
